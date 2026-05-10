@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton Danilov — Virtual Production & CG Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital@0;1&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #080808;
+    --dark: #0f0f0f;
+    --surface: #151515;
+    --border: #1e1e1e;
+    --muted: #2a2a2a;
+    --text: #e8e0d5;
+    --dim: #7a7068;
+    --accent: #c8a96e;
+    --accent2: #6e9dc8;
+    --white: #f5f0eb;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+  }
+
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,169,110,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(110,157,200,0.04) 0%, transparent 50%),
+      linear-gradient(180deg, #080808 0%, #0a0a0a 100%);
+  }
+
+  .hero-line {
+    position: absolute;
+    top: 0;
+    left: 4rem;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  h1 span {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--dim);
+    max-width: 500px;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat {
+    border-left: 1px solid var(--border);
+    padding-left: 1.5rem;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 0.25rem;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 7rem 4rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 2rem;
+    line-height: 1;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    max-width: 1200px;
+  }
+
+  .about-text p {
+    color: var(--dim);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-style: normal;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 1rem;
+  }
+
+  .skill-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: color 0.3s;
+  }
+
+  .skill-item:hover { color: var(--text); }
+
+  .skill-item::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 0.6rem;
+  }
+
+  /* SHOWREELS */
+  .showreels { background: var(--black); }
+
+  .reels-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+  }
+
+  .reel-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .reel-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .reel-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .reel-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  .reel-info {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .reel-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .reel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+
+  /* EXPERIENCE */
+  .experience {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline {
+    max-width: 900px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    padding: 0 0 3rem 3rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .timeline-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border: 1px solid var(--accent);
+    background: var(--black);
+    transform: rotate(45deg);
+  }
+
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--dim);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .timeline-desc {
+    color: var(--dim);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--black); }
+
+  .contact-inner {
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .contact-inner h2 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-inner p {
+    color: var(--dim);
+    font-style: italic;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    z-index: -1;
+  }
+
+  .contact-link:hover {
+    color: var(--black);
+    border-color: var(--accent);
+  }
+
+  .contact-link:hover::before { transform: translateX(0); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .hero-desc { animation-delay: 0.35s; }
+  .hero-stats { animation-delay: 0.5s; }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 3rem;
+    background: var(--dim);
+    animation: scrollLine 1.5s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.5); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 2rem; padding-right: 2rem; }
+    .about-grid, .reels-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Anton Danilov</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#showreels">Showreels</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Virtual Production · CG · VFX · Unreal Engine 5</div>
+    <h1>Anton<span>Danilov</span></h1>
+    <p class="hero-desc">Senior CG artist and Virtual Production specialist with 20+ years across game development, advertising, broadcast, and high-end commercial production.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years in CG/VFX</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Years in VP</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">EST</div>
+        <div class="stat-label">Tallinn, Remote</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-label">Profile</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Who I Am</h2>
+      <p>I built and led the <strong>Virtual Production department at Gorodenkoff Productions</strong> in Tallinn — taking the studio from its first LED volume tests to attracting major European advertising clients.</p>
+      <p>Over nearly seven years, I developed the full technical pipeline in <strong>Unreal Engine 5</strong>, trained and mentored the team, and helped establish VP as a core part of the studio's offering.</p>
+      <p>Before that, I spent years creating <strong>game assets at Ringtail Studios</strong>, worked as a 3D artist and compositor at CG Company (Moscow), Vilks Postproduction (Riga), and contributed to top advertising campaigns at Leo Burnett Kontuur and other agencies.</p>
+      <p>I'm based in <strong>Tallinn, Estonia</strong> and fully available for remote collaboration worldwide.</p>
+    </div>
+    <div>
+      <h2>Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-item">Virtual Production</div>
+        <div class="skill-item">Unreal Engine 5</div>
+        <div class="skill-item">Niagara VFX</div>
+        <div class="skill-item">Real-Time VFX</div>
+        <div class="skill-item">3D Modelling</div>
+        <div class="skill-item">CG Compositing</div>
+        <div class="skill-item">Lighting & Rendering</div>
+        <div class="skill-item">Blender</div>
+        <div class="skill-item">DaVinci Resolve</div>
+        <div class="skill-item">After Effects</div>
+        <div class="skill-item">Pipeline Building</div>
+        <div class="skill-item">Team Mentoring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="showreels" id="showreels">
+  <div class="section-label">Work</div>
+  <h2>Showreels 2026</h2>
+  <div class="reels-grid">
+    <div class="reel-card">
+      <div class="reel-video">
+        <iframe src="https://www.youtube.com/embed/9K4tjIqzAPU" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="reel-info">
+        <div class="reel-type">LED Volume · UE5 · Pipeline</div>
+        <div class="reel-title">Virtual Production Showreel</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-video">
+        <iframe src="https://www.youtube.com/embed/JjtEWydem3Y" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="reel-info">
+        <div class="reel-type">Game Assets · 3D · Environments</div>
+        <div class="reel-title">3D Games, Weapons & Worlds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="section-label">Career</div>
+  <h2>Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Sep 2019 — Mar 2026</div>
+      <div class="timeline-role">Chief Virtual Production Artist</div>
+      <div class="timeline-company">Gorodenkoff Productions · Tallinn, Estonia</div>
+      <div class="timeline-desc">Built and led the VP department from scratch. Developed full UE5 pipeline, trained the team, delivered high-end commercial projects for major European clients.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Dec 2013 — May 2019</div>
+      <div class="timeline-role">3D Artist & Compositor</div>
+      <div class="timeline-company">CG Company · Moscow, Russia</div>
+      <div class="timeline-desc">High-end CG production for advertising and broadcast. 3D, compositing, rendering across major campaigns.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Sep 2012 — Sep 2013</div>
+      <div class="timeline-role">CG Generalist & Compositor</div>
+      <div class="timeline-company">Vilks Postproduction · Riga, Latvia</div>
+      <div class="timeline-desc">Post-production for advertising clients across the Baltic region.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2006 — 2012</div>
+      <div class="timeline-role">3D Artist / Advertising Production</div>
+      <div class="timeline-company">Motion Studios, Leo Burnett Kontuur & others · Tallinn</div>
+      <div class="timeline-desc">3D and compositing for top advertising agencies in Estonia.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2001 — 2006</div>
+      <div class="timeline-role">3D Artist — Game Assets</div>
+      <div class="timeline-company">Ringtail Studios · Tallinn, Estonia</div>
+      <div class="timeline-desc">Creating game assets for international game development studios over 5+ years.</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center;">Contact</div>
+    <h2>Let's Work<br>Together</h2>
+    <p>Available for remote collaboration worldwide. Open to full-time, contract and freelance projects.</p>
+    <div class="contact-links">
+      <a href="mailto:danily4@gmail.com" class="contact-link">
+        ✉ danily4@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/danily4/" target="_blank" class="contact-link">
+        ↗ LinkedIn
+      </a>
+      <a href="https://www.youtube.com/@AntonDanilovSP" target="_blank" class="contact-link">
+        ▶ YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Anton Danilov</p>
+  <p>Tallinn, Estonia · Available Worldwide · Remote</p>
+</footer>
+
+</body>
+</html>
