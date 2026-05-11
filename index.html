@@ -285,6 +285,12 @@
     max-width: 1200px;
   }
 
+  .reels-grid .reel-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
   .reel-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -635,6 +641,15 @@
       <div class="reel-info">
         <div class="reel-type">Game Assets · 3D · Environments</div>
         <div class="reel-title">3D Games, Weapons & Worlds</div>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-video">
+        <iframe src="https://www.youtube.com/embed/iJxPz3cakqc" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="reel-info">
+        <div class="reel-type">VFX · Compositing · Advertising</div>
+        <div class="reel-title">VFX & Compositing Showreel</div>
       </div>
     </div>
   </div>
