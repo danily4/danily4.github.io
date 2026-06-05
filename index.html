@@ -32,7 +32,6 @@
     overflow-x: hidden;
   }
 
-  /* NOISE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -43,12 +42,9 @@
     opacity: 0.4;
   }
 
-  /* NAV */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     padding: 1.5rem 4rem;
     display: flex;
@@ -66,11 +62,7 @@
     text-decoration: none;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
   .nav-links a {
     font-family: 'JetBrains Mono', monospace;
@@ -84,7 +76,6 @@
 
   .nav-links a:hover { color: var(--text); }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -105,18 +96,13 @@
 
   .hero-line {
     position: absolute;
-    top: 0;
-    left: 4rem;
-    width: 1px;
-    height: 100%;
+    top: 0; left: 4rem;
+    width: 1px; height: 100%;
     background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
     opacity: 0.5;
   }
 
-  .hero-content {
-    position: relative;
-    max-width: 900px;
-  }
+  .hero-content { position: relative; max-width: 900px; }
 
   .hero-tag {
     font-family: 'JetBrains Mono', monospace;
@@ -133,8 +119,7 @@
   .hero-tag::before {
     content: '';
     display: block;
-    width: 2rem;
-    height: 1px;
+    width: 2rem; height: 1px;
     background: var(--accent);
   }
 
@@ -147,10 +132,7 @@
     margin-bottom: 2rem;
   }
 
-  h1 span {
-    color: var(--accent);
-    display: block;
-  }
+  h1 span { color: var(--accent); display: block; }
 
   .hero-desc {
     font-size: 1.1rem;
@@ -161,10 +143,7 @@
     margin-bottom: 3rem;
   }
 
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-  }
+  .hero-stats { display: flex; gap: 3rem; }
 
   .stat {
     border-left: 1px solid var(--border);
@@ -187,11 +166,7 @@
     margin-top: 0.25rem;
   }
 
-  /* SECTIONS */
-  section {
-    padding: 7rem 4rem;
-    position: relative;
-  }
+  section { padding: 7rem 4rem; position: relative; }
 
   .section-label {
     font-family: 'JetBrains Mono', monospace;
@@ -221,7 +196,6 @@
     line-height: 1;
   }
 
-  /* ABOUT */
   .about {
     background: var(--dark);
     border-top: 1px solid var(--border);
@@ -236,16 +210,8 @@
     max-width: 1200px;
   }
 
-  .about-text p {
-    color: var(--dim);
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
-  }
-
-  .about-text p strong {
-    color: var(--text);
-    font-style: normal;
-  }
+  .about-text p { color: var(--dim); margin-bottom: 1.5rem; font-size: 1.05rem; }
+  .about-text p strong { color: var(--text); font-style: normal; }
 
   .skills-grid {
     display: grid;
@@ -283,10 +249,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1400px;
-  }
-
-  .reels-grid .reel-card:last-child:nth-child(odd) {
-    grid-column: span 1;
   }
 
   .reel-card {
@@ -337,6 +299,127 @@
     color: var(--white);
   }
 
+  /* GAME CARD — отличается от обычного reel-card */
+  .game-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-card:hover {
+    border-color: var(--accent2);
+    transform: translateY(-4px);
+  }
+
+  .game-thumb {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #0d1a14;
+  }
+
+  .game-thumb-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Axe icon SVG */
+  .game-icon {
+    width: 64px;
+    height: 64px;
+    opacity: 0.7;
+  }
+
+  .game-thumb-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    opacity: 0.5;
+  }
+
+  .game-info {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .game-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+
+  .game-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .game-desc {
+    font-size: 0.82rem;
+    color: var(--dim);
+    font-style: italic;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  .game-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+  }
+
+  .game-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    text-decoration: none;
+    border: 1px solid var(--accent2);
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s;
+    align-self: flex-start;
+  }
+
+  .game-link:hover {
+    background: var(--accent2);
+    color: var(--black);
+  }
+
   /* EXPERIENCE */
   .experience {
     background: var(--dark);
@@ -352,9 +435,7 @@
   .timeline::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    left: 0; top: 0; bottom: 0;
     width: 1px;
     background: var(--border);
   }
@@ -374,10 +455,8 @@
 
   .timeline-dot {
     position: absolute;
-    left: -4px;
-    top: 6px;
-    width: 9px;
-    height: 9px;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
     border: 1px solid var(--accent);
     background: var(--black);
     transform: rotate(45deg);
@@ -423,10 +502,7 @@
     margin: 0 auto;
   }
 
-  .contact-inner h2 {
-    font-size: clamp(3rem, 7vw, 6rem);
-    margin-bottom: 1.5rem;
-  }
+  .contact-inner h2 { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 1.5rem; }
 
   .contact-inner p {
     color: var(--dim);
@@ -469,16 +545,9 @@
     z-index: -1;
   }
 
-  .contact-link:hover {
-    color: var(--white);
-    border-color: var(--accent);
-    position: relative;
-    z-index: 1;
-  }
-
+  .contact-link:hover { color: var(--white); border-color: var(--accent); }
   .contact-link:hover::before { transform: translateX(0); }
 
-  /* FOOTER */
   footer {
     padding: 2rem 4rem;
     border-top: 1px solid var(--border);
@@ -495,7 +564,6 @@
     text-transform: uppercase;
   }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -511,11 +579,9 @@
   .hero-desc { animation-delay: 0.35s; }
   .hero-stats { animation-delay: 0.5s; }
 
-  /* SCROLL INDICATOR */
   .scroll-hint {
     position: absolute;
-    bottom: 2.5rem;
-    right: 4rem;
+    bottom: 2.5rem; right: 4rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
@@ -530,8 +596,7 @@
   .scroll-hint::after {
     content: '';
     display: block;
-    width: 1px;
-    height: 3rem;
+    width: 1px; height: 3rem;
     background: var(--dim);
     animation: scrollLine 1.5s ease-in-out infinite;
   }
@@ -621,7 +686,7 @@
 
 <section class="showreels" id="showreels">
   <div class="section-label">Work</div>
-  <h2>Showreels 2026</h2>
+  <h2>Showreels & Projects</h2>
   <div class="reels-grid">
     <div class="reel-card">
       <div class="reel-video">
@@ -650,6 +715,35 @@
         <div class="reel-title">VFX & Compositing Showreel</div>
       </div>
     </div>
+
+    <!-- DreamWoodCutter -->
+    <div class="game-card">
+      <div class="game-thumb">
+        <div class="game-thumb-inner">
+          <svg class="game-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 8 L56 20 L24 52 L12 40 Z" stroke="#6e9dc8" stroke-width="2" fill="rgba(110,157,200,0.1)"/>
+            <path d="M44 8 L56 20 L52 24 L40 12 Z" stroke="#6e9dc8" stroke-width="1.5" fill="rgba(110,157,200,0.25)"/>
+            <path d="M24 52 L12 40 L8 56 Z" stroke="#6e9dc8" stroke-width="1.5" fill="rgba(110,157,200,0.15)"/>
+            <line x1="30" y1="34" x2="14" y2="50" stroke="#c8a96e" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+          </svg>
+          <div class="game-thumb-label">UE5</div>
+        </div>
+      </div>
+      <div class="game-info">
+        <div class="game-type">Indie Game · Solo Dev · 2026</div>
+        <div class="game-title">DreamWoodCutter</div>
+        <div class="game-desc">A solo-developed atmospheric lumberjack sim built in Unreal Engine 5. Features sector-based tree physics, stamina system, procedural wind, and spatial audio — fully playable demo available.</div>
+        <div class="game-tags">
+          <span class="game-tag">Unreal Engine 5</span>
+          <span class="game-tag">Blueprints</span>
+          <span class="game-tag">Physics</span>
+          <span class="game-tag">Niagara</span>
+          <span class="game-tag">Game Design</span>
+        </div>
+        <a href="https://danily4.itch.io/dreamwoodcutter" target="_blank" class="game-link">↓ Download on itch.io</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -690,7 +784,7 @@
       <div class="timeline-period">2001 — 2006</div>
       <div class="timeline-role">3D Artist — Game Assets</div>
       <div class="timeline-company">Ringtail Studios · Tallinn, Estonia</div>
-      <div class="timeline-desc">Creating game assets for international game development studios over 5+ years.</div>
+      <div class="timeline-desc">Creating game assets for international game development studios over 5+ years. Credits include Alan Wake (Remedy Entertainment).</div>
     </div>
   </div>
 </section>
@@ -701,15 +795,9 @@
     <h2>Let's Work<br>Together</h2>
     <p>Available for remote collaboration worldwide. Open to full-time, contract and freelance projects.</p>
     <div class="contact-links">
-      <a href="mailto:danily4@gmail.com" class="contact-link">
-        ✉ danily4@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/danily4/" target="_blank" class="contact-link">
-        ↗ LinkedIn
-      </a>
-      <a href="https://www.youtube.com/@AntonDanilovSP" target="_blank" class="contact-link">
-        ▶ YouTube
-      </a>
+      <a href="mailto:danily4@gmail.com" class="contact-link">✉ danily4@gmail.com</a>
+      <a href="https://www.linkedin.com/in/danily4/" target="_blank" class="contact-link">↗ LinkedIn</a>
+      <a href="https://www.youtube.com/@AntonDanilovSP" target="_blank" class="contact-link">▶ YouTube</a>
     </div>
   </div>
 </section>
