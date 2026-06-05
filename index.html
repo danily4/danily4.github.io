@@ -323,29 +323,16 @@
     background: #0d1a14;
   }
 
-  .game-thumb-inner {
+  .game-thumb img {
     position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
   }
 
-  /* Axe icon SVG */
-  .game-icon {
-    width: 64px;
-    height: 64px;
-    opacity: 0.7;
-  }
-
-  .game-thumb-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    letter-spacing: 0.1em;
-    color: var(--accent2);
-    opacity: 0.5;
+  .game-card:hover .game-thumb img {
+    transform: scale(1.04);
   }
 
   .game-info {
@@ -719,15 +706,7 @@
     <!-- DreamWoodCutter -->
     <div class="game-card">
       <div class="game-thumb">
-        <div class="game-thumb-inner">
-          <svg class="game-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M44 8 L56 20 L24 52 L12 40 Z" stroke="#6e9dc8" stroke-width="2" fill="rgba(110,157,200,0.1)"/>
-            <path d="M44 8 L56 20 L52 24 L40 12 Z" stroke="#6e9dc8" stroke-width="1.5" fill="rgba(110,157,200,0.25)"/>
-            <path d="M24 52 L12 40 L8 56 Z" stroke="#6e9dc8" stroke-width="1.5" fill="rgba(110,157,200,0.15)"/>
-            <line x1="30" y1="34" x2="14" y2="50" stroke="#c8a96e" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
-          </svg>
-          <div class="game-thumb-label">UE5</div>
-        </div>
+        <img src="DreamWoodCutter_coverS.png" alt="DreamWoodCutter — atmospheric lumberjack game in UE5">
       </div>
       <div class="game-info">
         <div class="game-type">Indie Game · Solo Dev · 2026</div>
