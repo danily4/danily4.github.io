@@ -1,790 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anton Danilov — Virtual Production & CG Artist</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital@0;1&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<meta name="description" content="Anton Danilov: senior CG artist and Virtual Production specialist, 20+ years in games, advertising and broadcast. Unreal Engine 5, VFX, generative AI. Tallinn, remote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Onest:wght@400;600;700;800&display=swap">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black: #080808;
-    --dark: #0f0f0f;
-    --surface: #151515;
-    --border: #1e1e1e;
-    --muted: #2a2a2a;
-    --text: #e8e0d5;
-    --dim: #7a7068;
-    --accent: #c8a96e;
-    --accent2: #6e9dc8;
-    --white: #f5f0eb;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--black);
-    color: var(--text);
-    font-family: 'Libre Baskerville', Georgia, serif;
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.5rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
-  }
-
-  .nav-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-
-  .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--dim);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    padding: 0 4rem 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,169,110,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(110,157,200,0.04) 0%, transparent 50%),
-      linear-gradient(180deg, #080808 0%, #0a0a0a 100%);
-  }
-
-  .hero-line {
-    position: absolute;
-    top: 0; left: 4rem;
-    width: 1px; height: 100%;
-    background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
-    opacity: 0.5;
-  }
-
-  .hero-content { position: relative; max-width: 900px; }
-
-  .hero-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 2rem; height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 12vw, 11rem);
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    margin-bottom: 2rem;
-  }
-
-  h1 span { color: var(--accent); display: block; }
-
-  .hero-desc {
-    font-size: 1.1rem;
-    color: var(--dim);
-    max-width: 500px;
-    font-style: italic;
-    line-height: 1.8;
-    margin-bottom: 3rem;
-  }
-
-  .hero-stats { display: flex; gap: 3rem; }
-
-  .stat {
-    border-left: 1px solid var(--border);
-    padding-left: 1.5rem;
-  }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-top: 0.25rem;
-  }
-
-  section { padding: 7rem 4rem; position: relative; }
-
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 4rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    letter-spacing: 0.03em;
-    color: var(--white);
-    margin-bottom: 2rem;
-    line-height: 1;
-  }
-
-  .about {
-    background: var(--dark);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
-    max-width: 1200px;
-  }
-
-  .about-text p { color: var(--dim); margin-bottom: 1.5rem; font-size: 1.05rem; }
-  .about-text p strong { color: var(--text); font-style: normal; }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    margin-top: 1rem;
-  }
-
-  .skill-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--dim);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: color 0.3s;
-  }
-
-  .skill-item:hover { color: var(--text); }
-
-  .skill-item::before {
-    content: '▸';
-    color: var(--accent);
-    font-size: 0.6rem;
-  }
-
-  /* SHOWREELS */
-  .showreels { background: var(--black); }
-
-  .reels-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1400px;
-  }
-
-  .reel-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    position: relative;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .reel-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .reel-video {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-  }
-
-  .reel-video iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
-
-  .reel-info {
-    padding: 1.5rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .reel-type {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  .reel-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
-
-  /* GAME CARD — отличается от обычного reel-card */
-  .game-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    position: relative;
-    transition: border-color 0.3s, transform 0.3s;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .game-card:hover {
-    border-color: var(--accent2);
-    transform: translateY(-4px);
-  }
-
-  .game-thumb {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    background: #0d1a14;
-  }
-
-  .game-thumb img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .game-card:hover .game-thumb img {
-    transform: scale(1.04);
-  }
-
-  .game-info {
-    padding: 1.5rem;
-    border-top: 1px solid var(--border);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .game-type {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent2);
-  }
-
-  .game-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .game-desc {
-    font-size: 0.82rem;
-    color: var(--dim);
-    font-style: italic;
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .game-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.25rem;
-  }
-
-  .game-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-  }
-
-  .game-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    text-decoration: none;
-    border: 1px solid var(--accent2);
-    padding: 0.5rem 1rem;
-    margin-top: 0.5rem;
-    transition: all 0.3s;
-    align-self: flex-start;
-  }
-
-  .game-link:hover {
-    background: var(--accent2);
-    color: var(--black);
-  }
-
-  /* EXPERIENCE */
-  .experience {
-    background: var(--dark);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .timeline {
-    max-width: 900px;
-    position: relative;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .timeline-item {
-    padding: 0 0 3rem 3rem;
-    position: relative;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 3rem;
-  }
-
-  .timeline-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -4px; top: 6px;
-    width: 9px; height: 9px;
-    border: 1px solid var(--accent);
-    background: var(--black);
-    transform: rotate(45deg);
-  }
-
-  .timeline-period {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-role {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-company {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--dim);
-    margin-bottom: 1rem;
-    letter-spacing: 0.1em;
-  }
-
-  .timeline-desc {
-    color: var(--dim);
-    font-size: 0.95rem;
-    font-style: italic;
-  }
-
-  /* CONTACT */
-  .contact { background: var(--black); }
-
-  .contact-inner {
-    max-width: 700px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .contact-inner h2 { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 1.5rem; }
-
-  .contact-inner p {
-    color: var(--dim);
-    font-style: italic;
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    border: 1px solid var(--border);
-    color: var(--text);
-    text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-link::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--accent);
-    transform: translateX(-100%);
-    transition: transform 0.3s;
-    z-index: -1;
-  }
-
-  .contact-link:hover { color: var(--white); border-color: var(--accent); }
-  .contact-link:hover::before { transform: translateX(0); }
-
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-content > * {
-    animation: fadeUp 0.8s ease forwards;
-    opacity: 0;
-  }
-
-  .hero-tag { animation-delay: 0.1s; }
-  h1 { animation-delay: 0.2s; }
-  .hero-desc { animation-delay: 0.35s; }
-  .hero-stats { animation-delay: 0.5s; }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem; right: 4rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dim);
-    writing-mode: vertical-rl;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .scroll-hint::after {
-    content: '';
-    display: block;
-    width: 1px; height: 3rem;
-    background: var(--dim);
-    animation: scrollLine 1.5s ease-in-out infinite;
-  }
-
-  @keyframes scrollLine {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(0.5); }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1.5rem 2rem; }
-    .nav-links { display: none; }
-    .hero, section { padding-left: 2rem; padding-right: 2rem; }
-    .about-grid, .reels-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-  }
+/* Layout: the same node-editor canvas as the courses site. Hero = name + a pipeline graph where every skill feeds one output, Virtual Production. Below: reels, career chain, contact. One dark theme by design. */
+:root{
+  --bg:#15171b;
+  --panel:#22252b;
+  --panel-dim:#1c1f24;
+  --line:#3a3f49;
+  --wire:#4a505c;
+  --ink:#e8eaee;
+  --muted:#aeb4bf;
+  --faint:#8b93a1;
+  --accent:#fb923c;
+  --accent-soft:#fdba74;
+  --on-accent:#15171b;
+  --display:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background-color:var(--bg);background-image:radial-gradient(#2c3038 1.2px,transparent 1.3px);background-size:28px 28px;color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(48px,8vw,104px);line-height:.95;letter-spacing:-.035em;font-weight:800}
+h2{font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.02em;font-weight:700}
+h3{font-size:20px;line-height:1.25;font-weight:700}
+p{margin:0}
+
+/* Nav */
+.nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 32px;padding:24px 0}
+.nav .brand{font-weight:700;font-size:18px;text-decoration:none;margin-right:auto}
+.nav a{text-decoration:none;font-size:16px;padding:10px 0}
+.nav a:hover{color:var(--accent-soft)}
+.nav .cta{border:1.5px solid var(--ink);border-radius:8px;padding:10px 20px;font-weight:600}
+
+/* Hero */
+.hero{padding-top:40px;padding-bottom:72px}
+.hero-text{display:flex;flex-direction:column;gap:18px;margin-bottom:48px;max-width:900px}
+.hero-text .lead{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:640px}
+.stats{display:flex;flex-wrap:wrap;gap:16px 40px;margin-top:8px}
+.stats div{display:flex;flex-direction:column;gap:2px}
+.stats b{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+.stats span{font-size:14px;color:var(--faint)}
+
+/* Pipeline graph */
+.graph{position:relative;display:grid;grid-template-columns:minmax(240px,360px) minmax(280px,420px);justify-content:start;column-gap:clamp(64px,12vw,200px);row-gap:14px}
+.graph svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.graph>.mono{align-self:end}
+.inputs{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
+.in{font:inherit;text-align:left;color:#c3c8d1;background:var(--panel-dim);border:1.5px solid var(--line);border-radius:12px;padding:16px 20px;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-height:76px;transition:border-color .15s,background .15s,color .15s}
+.in:hover{border-color:var(--accent-soft)}
+.in strong{font-size:19px;font-weight:600;line-height:1.2}
+.in .mono{font-size:11px}
+.in.lit{color:var(--ink);background:var(--panel);border-color:var(--accent)}
+.in.lit .mono{color:var(--accent-soft)}
+.in[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.in[aria-pressed=true] .mono{color:var(--on-accent);opacity:.75}
+.in[aria-pressed=true] strong{font-weight:700}
+.out{grid-column:2;grid-row:2;align-self:center;position:relative;z-index:1;background:var(--panel);border:2px solid var(--accent);border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;gap:10px;box-shadow:0 0 0 6px rgba(251,146,60,.08)}
+.out .mono{color:var(--accent-soft)}
+.out h3{font-size:clamp(24px,2.4vw,30px);letter-spacing:-.01em}
+.out p{color:var(--muted);font-size:16px}
+.out a{font-weight:600;color:var(--accent-soft);text-underline-offset:3px;align-self:flex-start;padding:4px 0}
+
+.readout{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding:18px 26px;background:var(--panel);border:1.5px solid var(--line);border-radius:12px;min-height:76px}
+.readout .mono{color:var(--accent-soft)}
+.readout p{flex:1 1 420px;font-size:17px}
+.readout a{font-weight:600;color:var(--accent-soft);text-underline-offset:3px;white-space:nowrap}
+
+/* Sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;max-width:760px}
+.sec-head p{color:var(--muted)}
+
+/* Reels */
+.reels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:20px}
+.reel{background:var(--panel);border:1.5px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:24px;transition:border-color .15s}
+.reel:target,.reel.hl{border-color:var(--accent)}
+.screen{position:relative;aspect-ratio:16/9;background:#101216;background-size:cover;background-position:center}
+.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:linear-gradient(180deg,rgba(21,23,27,0) 40%,rgba(21,23,27,.55));display:grid;place-items:center}
+.play span{width:72px;height:72px;border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 8px 30px rgba(0,0,0,.4);transition:transform .15s}
+.play:hover span{transform:scale(1.06)}
+.play svg{width:26px;height:26px;margin-left:4px}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel-info{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.reel-info .mono{color:var(--accent-soft)}
+.reel-info p{color:var(--muted);font-size:16px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tags span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.btn{display:inline-block;align-self:flex-start;margin-top:6px;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:16px;padding:12px 22px;border-radius:8px;text-decoration:none}
+.btn:hover{background:var(--accent-soft)}
+
+/* Profile */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px;align-items:start}
+.about-text{display:flex;flex-direction:column;gap:16px}
+.about-text p{color:var(--muted)}
+.about-text strong{color:var(--ink);font-weight:600}
+.about-text a{color:var(--accent-soft);text-underline-offset:3px}
+.skills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.skills li{background:var(--panel-dim);border:1.5px solid var(--line);border-radius:8px;padding:8px 14px;font-size:15px}
+.skills li.key{border-color:var(--accent);color:var(--ink);background:var(--panel)}
+
+/* Career chain */
+.chain{list-style:none;margin:0;padding:0;max-width:860px}
+.chain li{position:relative;padding:0 0 30px 40px}
+.chain li::before{content:"";position:absolute;left:6px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2.5px solid var(--wire)}
+.chain li::after{content:"";position:absolute;left:12px;top:24px;bottom:-4px;width:2px;background:var(--wire)}
+.chain li:last-child::after{display:none}
+.chain li.now::before{border-color:var(--accent);background:var(--accent)}
+.chain .mono{display:block;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.chain li.now .mono{color:var(--accent-soft)}
+.chain b{display:block;font-size:20px;font-weight:700;line-height:1.25}
+.chain .co{display:block;color:var(--faint);font-size:15px;margin:2px 0 6px}
+.chain p{color:var(--muted);font-size:16px;max-width:65ch}
+
+/* Contact */
+.contact{display:flex;flex-direction:column;gap:28px}
+.links{display:flex;flex-wrap:wrap;gap:12px}
+.links a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:17px;padding:14px 22px;border:1.5px solid var(--wire);border-radius:10px;background:var(--panel-dim)}
+.links a:hover{border-color:var(--accent);color:var(--accent-soft)}
+.links a.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.links a.primary:hover{background:var(--accent-soft);color:var(--on-accent)}
+.links svg{width:18px;height:18px;flex:none}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--faint);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+
+@media (max-width:900px){
+  .graph{grid-template-columns:1fr;row-gap:12px}
+  .graph svg,.graph>.mono{display:none}
+  .inputs{grid-column:1;grid-row:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .in{min-height:64px;padding:12px 14px}
+  .in strong{font-size:16px}
+  .out{grid-column:1;grid-row:auto;margin-top:10px}
+  .about{grid-template-columns:1fr;gap:36px}
+}
+@media (max-width:420px){.inputs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">Anton Danilov</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#showreels">Showreels</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+<header class="wrap" id="top">
+  <nav class="nav" aria-label="Sections">
+    <a class="brand" href="#top">Anton Danilov</a>
+    <a href="#work">Work</a>
+    <a href="#profile">Profile</a>
+    <a href="#career">Career</a>
+    <a class="cta" href="#contact">Contact</a>
+  </nav>
+</header>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Virtual Production · CG · VFX · Unreal Engine 5</div>
-    <h1>Anton<span>Danilov</span></h1>
-    <p class="hero-desc">Senior CG artist and Virtual Production specialist with 20+ years across game development, advertising, broadcast, and high-end commercial production.</p>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">20+</div>
-        <div class="stat-label">Years in CG/VFX</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">7</div>
-        <div class="stat-label">Years in VP</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">EST</div>
-        <div class="stat-label">Tallinn, Remote</div>
-      </div>
+<main>
+<div class="wrap hero">
+  <div class="hero-text">
+    <span class="mono">Virtual Production · CG · VFX · Unreal Engine 5 · Generative AI</span>
+    <h1>Anton Danilov</h1>
+    <p class="lead">Senior CG artist and Virtual Production specialist. Twenty years of games, advertising and broadcast, now routed into one pipeline: real-time, in camera.</p>
+    <div class="stats">
+      <div><b>20+</b><span>years in CG and VFX</span></div>
+      <div><b>6.5</b><span>years leading Virtual Production</span></div>
+      <div><b>Tallinn</b><span>remote, worldwide</span></div>
     </div>
   </div>
-  <div class="scroll-hint">Scroll</div>
-</section>
 
-<section class="about" id="about">
-  <div class="section-label">Profile</div>
-  <div class="about-grid">
-    <div class="about-text">
-      <h2>Who I Am</h2>
-      <p>I built and led the <strong>Virtual Production department at Gorodenkoff Productions</strong> in Tallinn — taking the studio from its first LED volume tests to attracting major European advertising clients.</p>
-      <p>Over nearly seven years, I developed the full technical pipeline in <strong>Unreal Engine 5</strong>, trained and mentored the team, and helped establish VP as a core part of the studio's offering.</p>
-      <p>Before that, I spent years creating <strong>game assets at Ringtail Studios</strong>, worked as a 3D artist and compositor at CG Company (Moscow), Vilks Postproduction (Riga), and contributed to top advertising campaigns at Leo Burnett Kontuur and other agencies.</p>
-      <p>I'm based in <strong>Tallinn, Estonia</strong> and fully available for remote collaboration worldwide.</p>
+  <div class="graph" id="graph">
+    <svg id="wires" aria-hidden="true"></svg>
+    <span class="mono" style="grid-column:1;grid-row:1">Inputs · 2001 → now</span>
+    <span class="mono" style="grid-column:2;grid-row:1">Output</span>
+
+    <div class="inputs" role="group" aria-label="Skills that feed the pipeline">
+      <button class="in lit" type="button" id="in-3d" data-node="3d" aria-pressed="false"><span class="mono">Since 2001 · Games</span><strong>3D Modelling</strong></button>
+      <button class="in lit" type="button" id="in-vfx" data-node="vfx" aria-pressed="false"><span class="mono">Since 2006 · Ads & broadcast</span><strong>Compositing & VFX</strong></button>
+      <button class="in lit" type="button" id="in-rt" data-node="rt" aria-pressed="false"><span class="mono">Since 2019 · UE5</span><strong>Real-time Pipelines</strong></button>
+      <button class="in lit" type="button" id="in-ai" data-node="ai" aria-pressed="false"><span class="mono">ComfyUI · Flux · Wan</span><strong>Generative AI</strong></button>
     </div>
-    <div>
-      <h2>Expertise</h2>
-      <div class="skills-grid">
-        <div class="skill-item">Virtual Production</div>
-        <div class="skill-item">Unreal Engine 5</div>
-        <div class="skill-item">Niagara VFX</div>
-        <div class="skill-item">Real-Time VFX</div>
-        <div class="skill-item">3D Modelling</div>
-        <div class="skill-item">CG Compositing</div>
-        <div class="skill-item">Lighting & Rendering</div>
-        <div class="skill-item">Blender</div>
-        <div class="skill-item">DaVinci Resolve</div>
-        <div class="skill-item">After Effects</div>
-        <div class="skill-item">Pipeline Building</div>
-        <div class="skill-item">Team Mentoring</div>
-      </div>
+
+    <div class="out" id="out">
+      <span class="mono">Output · Final pixel in camera</span>
+      <h3>Virtual Production</h3>
+      <p>Built the VP department at Gorodenkoff Productions from first LED volume tests to work for major European advertising clients.</p>
+      <a href="#reel-vp">Watch the VP showreel</a>
     </div>
   </div>
-</section>
 
-<section class="showreels" id="showreels">
-  <div class="section-label">Work</div>
-  <h2>Showreels & Projects</h2>
-  <div class="reels-grid">
-    <div class="reel-card">
-      <div class="reel-video">
-        <iframe src="https://www.youtube.com/embed/9K4tjIqzAPU" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="reel-info">
-        <div class="reel-type">LED Volume · UE5 · Pipeline</div>
-        <div class="reel-title">Virtual Production Showreel</div>
-      </div>
-    </div>
-    <div class="reel-card">
-      <div class="reel-video">
-        <iframe src="https://www.youtube.com/embed/JjtEWydem3Y" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="reel-info">
-        <div class="reel-type">Game Assets · 3D · Environments</div>
-        <div class="reel-title">3D Games, Weapons & Worlds</div>
-      </div>
-    </div>
-    <div class="reel-card">
-      <div class="reel-video">
-        <iframe src="https://www.youtube.com/embed/iJxPz3cakqc" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="reel-info">
-        <div class="reel-type">VFX · Compositing · Advertising</div>
-        <div class="reel-title">VFX & Compositing Showreel</div>
-      </div>
-    </div>
+  <div class="readout" aria-live="polite">
+    <span class="mono" id="ro-label">Pipeline</span>
+    <p id="ro-text">Every node feeds one output. Pick one to see where it comes from.</p>
+    <a id="ro-link" href="#work">See all work</a>
+  </div>
+</div>
 
-    <!-- DreamWoodCutter -->
-    <div class="game-card">
-      <div class="game-thumb">
-        <img src="DreamWoodCutter_coverS.png" alt="DreamWoodCutter — atmospheric lumberjack game in UE5">
-      </div>
-      <div class="game-info">
-        <div class="game-type">Indie Game · Solo Dev · 2026</div>
-        <div class="game-title">DreamWoodCutter</div>
-        <div class="game-desc">A solo-developed atmospheric lumberjack sim built in Unreal Engine 5. Features sector-based tree physics, stamina system, procedural wind, and spatial audio — fully playable demo available.</div>
-        <div class="game-tags">
-          <span class="game-tag">Unreal Engine 5</span>
-          <span class="game-tag">Blueprints</span>
-          <span class="game-tag">Physics</span>
-          <span class="game-tag">Niagara</span>
-          <span class="game-tag">Game Design</span>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Showreels & Projects</h2>
+      <p>Three reels, one for each part of the pipeline, and a game I built solo in Unreal Engine 5.</p>
+    </div>
+    <div class="reels">
+      <article class="reel" id="reel-vp">
+        <div class="screen" style="background-image:url('https://i.ytimg.com/vi/9K4tjIqzAPU/hqdefault.jpg')">
+          <button class="play" type="button" data-yt="9K4tjIqzAPU" aria-label="Play Virtual Production Showreel"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="#15171b"/></svg></span></button>
         </div>
-        <a href="https://danily4.itch.io/dreamwoodcutter" target="_blank" class="game-link">↓ Download on itch.io</a>
+        <div class="reel-info">
+          <span class="mono">LED Volume · UE5 · Pipeline</span>
+          <h3>Virtual Production Showreel</h3>
+        </div>
+      </article>
+      <article class="reel" id="reel-games">
+        <div class="screen" style="background-image:url('https://i.ytimg.com/vi/JjtEWydem3Y/hqdefault.jpg')">
+          <button class="play" type="button" data-yt="JjtEWydem3Y" aria-label="Play 3D Games, Weapons and Worlds"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="#15171b"/></svg></span></button>
+        </div>
+        <div class="reel-info">
+          <span class="mono">Game Assets · 3D · Environments</span>
+          <h3>3D Games, Weapons & Worlds</h3>
+        </div>
+      </article>
+      <article class="reel" id="reel-vfx">
+        <div class="screen" style="background-image:url('https://i.ytimg.com/vi/iJxPz3cakqc/hqdefault.jpg')">
+          <button class="play" type="button" data-yt="iJxPz3cakqc" aria-label="Play VFX and Compositing Showreel"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="#15171b"/></svg></span></button>
+        </div>
+        <div class="reel-info">
+          <span class="mono">VFX · Compositing · Advertising</span>
+          <h3>VFX & Compositing Showreel</h3>
+        </div>
+      </article>
+      <article class="reel" id="reel-game">
+        <div class="screen">
+          <img src="DreamWoodCutter_coverS.png" alt="DreamWoodCutter, an atmospheric lumberjack game in Unreal Engine 5">
+        </div>
+        <div class="reel-info">
+          <span class="mono">Indie game · Solo dev · 2026</span>
+          <h3>DreamWoodCutter</h3>
+          <p>An atmospheric lumberjack sim built solo in Unreal Engine 5: sector-based tree physics, a stamina system, procedural wind and spatial audio. The demo is playable.</p>
+          <div class="tags"><span>Unreal Engine 5</span><span>Blueprints</span><span>Physics</span><span>Niagara</span><span>Game Design</span></div>
+          <a class="btn" href="https://danily4.itch.io/dreamwoodcutter" target="_blank" rel="noopener">Download on itch.io</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="profile">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Profile</h2>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <p>I built and led the <strong>Virtual Production department at Gorodenkoff Productions</strong> in Tallinn, taking the studio from its first LED volume tests to work for major European advertising clients.</p>
+        <p>Over nearly seven years I developed the full technical pipeline in <strong>Unreal Engine 5</strong>, trained and mentored the team, and made VP a core part of the studio's offer.</p>
+        <p>Before that I spent years making <strong>game assets at Ringtail Studios</strong>, worked as a 3D artist and compositor at CG Company (Moscow) and Vilks Postproduction (Riga), and contributed to advertising campaigns at Leo Burnett Kontuur and other agencies.</p>
+        <p>I also teach: <a href="https://danily4.github.io/courses/">courses in 3D, Unreal Engine and AI video for adults</a> in Tallinn (site in Russian).</p>
+        <p>Based in <strong>Tallinn, Estonia</strong>, available for remote collaboration worldwide.</p>
+      </div>
+      <div>
+        <span class="mono" style="display:block;margin-bottom:14px">Expertise</span>
+        <ul class="skills">
+          <li class="key">Virtual Production</li>
+          <li class="key">Unreal Engine 5</li>
+          <li>Niagara VFX</li>
+          <li>Real-time VFX</li>
+          <li>3D Modelling</li>
+          <li>CG Compositing</li>
+          <li>Lighting & Rendering</li>
+          <li>Generative AI · ComfyUI</li>
+          <li>Blender</li>
+          <li>DaVinci Resolve</li>
+          <li>After Effects</li>
+          <li>Pipeline Building</li>
+          <li>Team Mentoring</li>
+        </ul>
       </div>
     </div>
-
   </div>
 </section>
 
-<section class="experience" id="experience">
-  <div class="section-label">Career</div>
-  <h2>Experience</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-period">Sep 2019 — Mar 2026</div>
-      <div class="timeline-role">Chief Virtual Production Artist</div>
-      <div class="timeline-company">Gorodenkoff Productions · Tallinn, Estonia</div>
-      <div class="timeline-desc">Built and led the VP department from scratch. Developed full UE5 pipeline, trained the team, delivered high-end commercial projects for major European clients.</div>
+<section id="career">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Career</h2>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-period">Dec 2013 — May 2019</div>
-      <div class="timeline-role">3D Artist & Compositor</div>
-      <div class="timeline-company">CG Company · Moscow, Russia</div>
-      <div class="timeline-desc">High-end CG production for advertising and broadcast. 3D, compositing, rendering across major campaigns.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-period">Sep 2012 — Sep 2013</div>
-      <div class="timeline-role">CG Generalist & Compositor</div>
-      <div class="timeline-company">Vilks Postproduction · Riga, Latvia</div>
-      <div class="timeline-desc">Post-production for advertising clients across the Baltic region.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-period">2006 — 2012</div>
-      <div class="timeline-role">3D Artist / Advertising Production</div>
-      <div class="timeline-company">Motion Studios, Leo Burnett Kontuur & others · Tallinn</div>
-      <div class="timeline-desc">3D and compositing for top advertising agencies in Estonia.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-period">2001 — 2006</div>
-      <div class="timeline-role">3D Artist — Game Assets</div>
-      <div class="timeline-company">Ringtail Studios · Tallinn, Estonia</div>
-      <div class="timeline-desc">Creating game assets for international game development studios over 5+ years. Credits include Alan Wake (Remedy Entertainment).</div>
-    </div>
+    <ol class="chain">
+      <li class="now">
+        <span class="mono">Sep 2019 — Mar 2026</span>
+        <b>Chief Virtual Production Artist</b>
+        <span class="co">Gorodenkoff Productions · Tallinn, Estonia</span>
+        <p>Built and led the VP department from scratch. Developed the full UE5 pipeline, trained the team, delivered high-end commercial projects for major European clients.</p>
+      </li>
+      <li>
+        <span class="mono">Dec 2013 — May 2019</span>
+        <b>3D Artist & Compositor</b>
+        <span class="co">CG Company · Moscow, Russia</span>
+        <p>High-end CG production for advertising and broadcast: 3D, compositing and rendering across major campaigns.</p>
+      </li>
+      <li>
+        <span class="mono">Sep 2012 — Sep 2013</span>
+        <b>CG Generalist & Compositor</b>
+        <span class="co">Vilks Postproduction · Riga, Latvia</span>
+        <p>Post-production for advertising clients across the Baltic region.</p>
+      </li>
+      <li>
+        <span class="mono">2006 — 2012</span>
+        <b>3D Artist, Advertising Production</b>
+        <span class="co">Motion Studios, Leo Burnett Kontuur and others · Tallinn</span>
+        <p>3D and compositing for top advertising agencies in Estonia.</p>
+      </li>
+      <li>
+        <span class="mono">2001 — 2006</span>
+        <b>3D Artist, Game Assets</b>
+        <span class="co">Ringtail Studios · Tallinn, Estonia</span>
+        <p>Game assets for international studios over five years. Credits include Alan Wake (Remedy Entertainment).</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="section-label" style="justify-content:center;">Contact</div>
-    <h2>Let's Work<br>Together</h2>
-    <p>Available for remote collaboration worldwide. Open to full-time, contract and freelance projects.</p>
-    <div class="contact-links">
-      <a href="mailto:danily4@gmail.com" class="contact-link">✉ danily4@gmail.com</a>
-      <a href="https://www.linkedin.com/in/danily4/" target="_blank" class="contact-link">↗ LinkedIn</a>
-      <a href="https://www.youtube.com/@AntonDanilovSP" target="_blank" class="contact-link">▶ YouTube</a>
+<section id="contact">
+  <div class="wrap contact">
+    <div class="sec-head" style="margin-bottom:0">
+      <h2>Let's work together</h2>
+      <p>Open to full-time, contract and freelance projects, remote worldwide or on site in the Baltics and Finland.</p>
+    </div>
+    <div class="links">
+      <a class="primary" href="mailto:danily4@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>danily4@gmail.com</a>
+      <a href="https://www.linkedin.com/in/danily4/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v11M4 4.5v.01M9 20v-6a3 3 0 0 1 6 0v6M9 9v11M15 20v-6a3 3 0 0 1 5 0v6"/></svg>LinkedIn</a>
+      <a href="https://www.youtube.com/@AntonDanilovSP" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg>YouTube</a>
+      <a href="https://danily4.itch.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="11" rx="3"/><path d="M8 11v3M6.5 12.5h3M15 12h.01M17.5 13.5h.01"/></svg>itch.io</a>
     </div>
   </div>
 </section>
+</main>
 
-<footer>
-  <p>© 2026 Anton Danilov</p>
-  <p>Tallinn, Estonia · Available Worldwide · Remote</p>
-</footer>
+<footer><div class="wrap"><span>© 2026 Anton Danilov</span><span>Tallinn, Estonia · Remote worldwide</span></div></footer>
 
+<script>
+(function(){
+"use strict";
+var NODES={
+  "3d":{label:"3D Modelling",text:"Five years of game assets at Ringtail Studios for international studios, including Alan Wake. The modelling base under everything else.",href:"#reel-games",link:"Watch the games reel"},
+  "vfx":{label:"Compositing & VFX",text:"3D, compositing and rendering for advertising and broadcast in Tallinn, Riga and Moscow: Leo Burnett Kontuur, Vilks Postproduction, CG Company.",href:"#reel-vfx",link:"Watch the VFX reel"},
+  "rt":{label:"Real-time Pipelines",text:"A full Unreal Engine 5 pipeline built for an LED volume, plus Niagara VFX and Blueprints in my own game, DreamWoodCutter.",href:"#reel-game",link:"See the game"},
+  "ai":{label:"Generative AI",text:"Local AI pipelines in ComfyUI with Flux and Wan on an RTX 4090, mixed with classical CG to get to final images faster.",href:"#contact",link:"Ask me about it"}
+};
+var ORDER=["3d","vfx","rt","ai"];
+var graph=document.getElementById("graph"),svg=document.getElementById("wires"),out=document.getElementById("out"),active=null;
+function el(id){return document.getElementById(id);}
+
+function wire(a,b,box,on){
+  var ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+  var x1=ra.right-box.left,y1=ra.top+ra.height/2-box.top,x2=rb.left-box.left,y2=rb.top+rb.height/2-box.top,dx=(x2-x1)/2;
+  var c=on?"#fb923c":"#4a505c",d=on?"#fb923c":"#6b7280";
+  return '<path d="M'+x1+" "+y1+" C "+(x1+dx)+" "+y1+", "+(x2-dx)+" "+y2+", "+x2+" "+y2+'" fill="none" stroke="'+c+'" stroke-width="3" stroke-linecap="round"/>'+
+    '<circle cx="'+x1+'" cy="'+y1+'" r="6" fill="'+d+'"/>';
+}
+function draw(){
+  if(getComputedStyle(svg).display==="none"){svg.innerHTML="";return;}
+  var box=graph.getBoundingClientRect(),dim="",lit="";
+  ORDER.forEach(function(k){
+    var on=active===null||active===k,s=wire(el("in-"+k),out,box,on);
+    if(on)lit+=s;else dim+=s;
+  });
+  var ro=out.getBoundingClientRect();
+  svg.innerHTML=dim+lit+'<circle cx="'+(ro.left-box.left)+'" cy="'+(ro.top+ro.height/2-box.top)+'" r="7" fill="#fb923c"/>';
+}
+function select(k){
+  active=(active===k)?null:k;
+  ORDER.forEach(function(id){
+    var b=el("in-"+id);
+    b.setAttribute("aria-pressed",String(active===id));
+    b.classList.toggle("lit",active===null);
+  });
+  var n=active?NODES[active]:null;
+  el("ro-label").textContent=n?n.label:"Pipeline";
+  el("ro-text").textContent=n?n.text:"Every node feeds one output. Pick one to see where it comes from.";
+  var link=el("ro-link");
+  link.textContent=n?n.link:"See all work";
+  link.setAttribute("href",n?n.href:"#work");
+  draw();
+}
+Array.prototype.forEach.call(document.querySelectorAll(".in"),function(b){
+  b.addEventListener("click",function(){select(b.dataset.node);});
+});
+
+/* Click-to-play YouTube: the player loads only when asked, so the page stays fast */
+Array.prototype.forEach.call(document.querySelectorAll(".play"),function(b){
+  b.addEventListener("click",function(){
+    var f=document.createElement("iframe");
+    f.src="https://www.youtube-nocookie.com/embed/"+b.dataset.yt+"?autoplay=1&rel=0";
+    f.title=b.getAttribute("aria-label").replace(/^Play /,"");
+    f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen=true;
+    b.parentNode.appendChild(f);
+    b.remove();
+  });
+});
+
+window.addEventListener("resize",draw);
+if(window.ResizeObserver){new ResizeObserver(draw).observe(graph);}
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(draw);}
+draw();
+})();
+</script>
 </body>
 </html>
