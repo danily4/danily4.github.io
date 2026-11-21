@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Антон Данилов — Андрагог, тренер по цифровым навыкам</title>
+<meta name="description" content="Помогаю взрослым спокойно освоить компьютер, онлайн-сервисы и новые инструменты для работы. Без спешки и без «это же элементарно».">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;700&family=Jost:wght@400;500&display=swap">
+<style>
+html{scroll-behavior:smooth}
+html,body{margin:0}
+body{background:#12122a}
+.site{min-height:100vh}
+.site{--bg:#12122a;--surface:#1c1c3d;--ink:#f1efff;--muted:#b4b0d8;--line:#34346a;--accent:#00e5ff;--on-accent:#0b0b1e;--hero-bg:radial-gradient(ellipse at 80% 0%,#5d34d0 0,transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(255,0,110,.35) 0,transparent 50%);--display:"Tektur","Jost",sans-serif;--body:"Jost",system-ui,sans-serif;--radius:2px;--photo-radius:2px;--h-weight:700}
+.site{container-type:inline-size;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.site *{box-sizing:border-box}
+.site a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.hero{background:var(--hero-bg);padding:0 0 64px}
+.hero .wrap.topnav{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding-top:22px;padding-bottom:48px;position:relative;z-index:1;font-size:.92em}
+.topnav a{text-decoration:none;padding:8px 0}
+.topnav a:hover{text-decoration:underline;text-underline-offset:4px}
+.topnav .nm{font-weight:700;margin-right:auto}
+.facts{list-style:none;margin:28px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 22px;font-weight:600;font-size:.95em}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.quote{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:18px}
+.quote blockquote{margin:0;font-size:1.05em;line-height:1.55}
+.quote blockquote::before{content:'';display:block;width:36px;height:4px;border-radius:2px;background:var(--accent);margin-bottom:16px}
+.quote figcaption{display:flex;flex-direction:column;gap:2px;font-size:.92em}
+.quote figcaption span{color:var(--muted)}
+.docbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.docbtns .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px}
+.docbtns .ci{width:20px;height:20px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr .8fr;gap:56px;align-items:center}
+.hero.solo .wrap{grid-template-columns:1fr}
+.role{margin:0 0 18px;font-size:.82em;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:var(--h-weight);font-size:clamp(36px,6cqi,68px);line-height:1.05;margin:0 0 20px;text-wrap:balance;overflow-wrap:anywhere}
+h2{font-family:var(--display);font-weight:var(--h-weight);font-size:clamp(26px,3.4cqi,38px);line-height:1.15;margin:0 0 28px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:var(--h-weight);font-size:1.2em;line-height:1.25;margin:0 0 8px}
+.pitch{font-size:1.15em;max-width:34em;color:var(--muted);margin:0 0 28px}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent)!important;padding:14px 26px;border-radius:var(--radius);text-decoration:none;font-weight:600}
+.btn{transition:transform .18s ease,filter .18s ease}
+.btn:hover,.btn:focus-visible{transform:translateY(-3px);filter:brightness(1.07) drop-shadow(0 8px 12px rgba(0,0,0,.2))}
+.btn:active{transform:translateY(-1px);filter:brightness(.97)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn .ci{transition:transform .18s ease}
+.btn:hover .ci{transform:translateY(-1px) rotate(-6deg)}
+@media (prefers-reduced-motion:reduce){.btn,.btn .ci{transition:none}.btn:hover,.btn:focus-visible,.btn:active,.btn:hover .ci{transform:none}}
+.photo,.mono{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--photo-radius)}
+.mono{background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-family:var(--display);font-weight:var(--h-weight);font-size:clamp(48px,9cqi,96px)}
+.sec{padding:60px 0;border-top:1px solid var(--line)}
+.about p{max-width:65ch;margin:0 0 1em}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:4px}
+.card p{margin:0;color:var(--muted)}
+.card a{margin-top:12px;font-weight:600;color:var(--accent);text-underline-offset:3px}
+.card{overflow:hidden}
+.card-img{display:block;width:calc(100% + 48px);max-width:none;margin:-24px -24px 16px;aspect-ratio:16/10;object-fit:cover}
+.ico{width:48px;height:48px;display:grid;place-items:center;border-radius:var(--radius);background:var(--accent);color:var(--on-accent);margin-bottom:12px;flex:none}
+.ico svg{width:26px;height:26px}
+.cover img{display:block;width:100%;aspect-ratio:21/8;object-fit:cover}
+.contacts dt{display:flex;align-items:center;gap:8px}
+.ci{width:18px;height:18px;flex:none}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius)}
+.contacts{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin:0 0 28px;font-size:1.1em}
+.contacts dt{color:var(--muted)}
+.contacts dd{margin:0;overflow-wrap:anywhere}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{border:1px solid var(--ink);padding:9px 18px;border-radius:var(--radius);text-decoration:none;font-weight:600}
+.foot{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.85em}
+@container (max-width:720px){.hero{padding:0 0 44px}.hero .wrap.topnav{padding-top:14px;padding-bottom:28px}.hero .wrap{grid-template-columns:1fr;gap:32px}.hero .pic{order:-1;max-width:260px}.sec{padding:44px 0}.cover img{aspect-ratio:16/9}.contacts{grid-template-columns:1fr;gap:2px}.contacts dd{margin-bottom:12px}}
+h1{text-transform:uppercase;font-size:clamp(32px,5.6cqi,62px);text-shadow:0 0 24px rgba(255,0,110,.6)}h2{text-transform:uppercase;letter-spacing:.04em}.role{color:#ff5fa8}.btn{box-shadow:0 0 22px rgba(0,229,255,.55)}.btn:hover,.btn:focus-visible{filter:brightness(1.1);box-shadow:0 0 34px rgba(0,229,255,.85)}.photo,.mono{border:1px solid #00e5ff;box-shadow:0 0 0 6px #12122a,0 0 0 7px #ff006e,0 0 44px #5d34d0}.mono{background:#1c1c3d;color:#00e5ff}.card{border-color:#5d34d0;box-shadow:inset 0 0 24px rgba(93,52,208,.25)}.card h3{color:#00e5ff}.ico{background:transparent;color:#ff5fa8;border:1px solid #ff5fa8;box-shadow:0 0 14px rgba(255,0,110,.45)}.links a{border-color:#ff5fa8;color:#ffb3d4}
+</style>
+</head>
+<body>
+<div class="site"><header class="hero" id="top"><nav class="wrap topnav" aria-label="Разделы сайта"><a class="nm" href="#top">Антон Данилов</a><a href="#about">Обо мне</a><a href="#courses">Чему я учу</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav><div class="wrap"><div><p class="role">Андрагог, тренер по цифровым навыкам</p><h1>Антон Данилов</h1><p class="pitch">Помогаю взрослым спокойно освоить компьютер, онлайн-сервисы и новые инструменты для работы. Без спешки и без «это же элементарно».</p><a class="btn" href="#contacts">Связаться</a><ul class="facts"><li>12 лет учу взрослых</li><li>Андрагог 6 уровня</li><li>Группы до 10 человек</li></ul></div><div class="pic"><img class="photo" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20500%22%3E%3Crect%20width%3D%22400%22%20height%3D%22500%22%20fill%3D%22%23f5eeda%22%2F%3E%3Crect%20x%3D%2240%22%20y%3D%2250%22%20width%3D%22320%22%20height%3D%22190%22%20rx%3D%228%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.12%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M70%2095h110M70%20125h60%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.14%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%22312%22%20cy%3D%22108%22%20r%3D%2226%22%20fill%3D%22none%22%20stroke%3D%22%232c7a74%22%20stroke-width%3D%228%22%2F%3E%3Ccircle%20cx%3D%22146%22%20cy%3D%22206%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22170%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22152%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22240%22%20cy%3D%22170%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22254%22%20cy%3D%22206%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22138%22%20cy%3D%22240%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22262%22%20cy%3D%22240%22%20r%3D%2228%22%20fill%3D%22%236f6a66%22%2F%3E%3Cpath%20d%3D%22M40%20500c0-88%2060-136%20160-136s160%2048%20160%20136z%22%20fill%3D%22%23c8552b%22%2F%3E%3Crect%20x%3D%22176%22%20y%3D%22296%22%20width%3D%2248%22%20height%3D%2276%22%20rx%3D%2220%22%20fill%3D%22%23e3b48f%22%2F%3E%3Cpath%20d%3D%22M166%20362l34%2040-46%2022z%20M234%20362l-34%2040%2046%2022z%22%20fill%3D%22%23f7f9fc%22%2F%3E%3Cpath%20d%3D%22M200%20414v70%22%20stroke%3D%22%23000%22%20stroke-opacity%3D%22.18%22%20stroke-width%3D%224%22%2F%3E%3Ccircle%20cx%3D%22139%22%20cy%3D%22252%22%20r%3D%2211%22%20fill%3D%22%23e3b48f%22%2F%3E%3Ccircle%20cx%3D%22261%22%20cy%3D%22252%22%20r%3D%2211%22%20fill%3D%22%23e3b48f%22%2F%3E%3Cellipse%20cx%3D%22200%22%20cy%3D%22246%22%20rx%3D%2262%22%20ry%3D%2274%22%20fill%3D%22%23f0c9a8%22%2F%3E%3Ccircle%20cx%3D%22166%22%20cy%3D%22186%22%20r%3D%2222%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22200%22%20cy%3D%22176%22%20r%3D%2222%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22234%22%20cy%3D%22186%22%20r%3D%2222%22%20fill%3D%22%236f6a66%22%2F%3E%3Ccircle%20cx%3D%22175%22%20cy%3D%22257%22%20r%3D%223.5%22%20fill%3D%22%232b2b2b%22%2F%3E%3Ccircle%20cx%3D%22225%22%20cy%3D%22257%22%20r%3D%223.5%22%20fill%3D%22%232b2b2b%22%2F%3E%3Cpath%20d%3D%22M185%20289q15%2011%2030%200%22%20fill%3D%22none%22%20stroke%3D%22%23a8553f%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E" alt="Антон Данилов"></div></div></header><main><section class="sec about" id="about"><div class="wrap"><h2>Обо мне</h2><p>Двенадцать лет учу взрослых: от первых шагов с ноутбуком до ведения собственных онлайн-курсов. Работаю с группами до десяти человек и индивидуально.</p><p>На занятиях много практики: каждый уходит с результатом, который сделал сам. Темп подбираю под группу, а материалы остаются у участников.</p><div class="docbtns"><a class="btn" href="samoanaliz22.pdf" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z M14 3v4h4 M9 12h6 M9 16h6"/></svg>Самоанализ</a></div></div></section><section class="sec" id="courses"><div class="wrap"><h2>Чему я учу</h2><div class="cards"><article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14v10H5z M2 19h20"/></svg></span><h3>Цифровая грамотность 50+</h3><p>8 встреч по 2 часа. Почта, банк, госуслуги и безопасность в интернете.</p></article><article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M3 20a6 6 0 0 1 12 0 M17 11a3 3 0 0 0 0-6 M21 20a6 6 0 0 0-4-5.6"/></svg></span><h3>Как учить взрослых онлайн</h3><p>Практикум для преподавателей: структура занятия, вовлечение, обратная связь.</p></article><article class="card"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><h3>Индивидуальные консультации</h3><p>Разбираем вашу задачу один на один, очно или по видеосвязи.</p></article></div></div></section><section class="sec" id="reviews"><div class="wrap"><h2>Отзывы</h2><div class="quotes"><figure class="quote"><blockquote>Боялась, что не справлюсь с интернет-банком. После третьей встречи плачу все счета сама и даже помогаю соседке.</blockquote><figcaption><b>Марина</b><span>Таллинн, 2025</span></figcaption></figure><figure class="quote"><blockquote>Анна объясняет спокойно и по шагам. Впервые на курсе не было стыдно переспросить.</blockquote><figcaption><b>Виктор</b><span>Нарва, 2024</span></figcaption></figure></div></div></section><section class="sec" id="contacts"><div class="wrap"><h2>Контакты</h2><dl class="contacts"><dt><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3z M3 7l9 6 9-6"/></svg>Почта</dt><dd><a href="mailto:anna@example.com">anna@example.com</a></dd><dt><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A15 15 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>Телефон</dt><dd><a href="tel:+37255550000">+372 5555 0000</a></dd><dt><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>Где</dt><dd>Таллинн и онлайн</dd></dl><div class="links"><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></div></div></section></main><footer class="foot"><div class="wrap">© 2026 Антон Данилов · Kask Koolitus OÜ</div></footer></div>
+</body>
+</html>
